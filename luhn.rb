@@ -15,6 +15,10 @@ end
 
 class Luhn
   def initialize(id_number)
+    id_number = id_number.to_s
+    raise ArgumentError, 'ID number must be at least two characters long' if id_number.length < 2
+    raise ArgumentError, 'ID number should not contain letters' if id_number =~ /\D/
+
     @id_number = id_number[0..-2]
     @check_digit = id_number[-1].to_i
   end
